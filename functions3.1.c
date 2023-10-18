@@ -14,10 +14,9 @@
 */
 char *build_path(char *command)
 {
-	char *p_env, *p_copy, *comm_path, **dir;
+	char *p_env = _getenv("PATH"), *p_copy, *comm_path, **dir;
 	struct stat info;
-	
-	path_env = _getenv("PATH");
+	int i, path_exist;
 	
 	if (p_env == NULL)
 		return (NULL);
@@ -32,7 +31,7 @@ char *build_path(char *command)
 		free(p_copy);
 		return (NULL);
 	}
-	for (int i = 0; dir[i]; i++)
+	for (i = 0; dir[i]; i++)
 	{
 		comm_path = malloc(_strlen_rec(dir[i]) + _strlen_rec(command) + 2);
 		
