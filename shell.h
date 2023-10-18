@@ -31,6 +31,7 @@ char *_memcpy(char *dest, char *src, size_t n);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 int _strlen_rec(const char *s);
+char **resize_buff(char **comm, unsigned int pre_size);
 
 #endif
 

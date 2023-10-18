@@ -76,3 +76,23 @@ char *_getenv(const char *env_var)
 	return (NULL);
 }
 
+/**
+  * resize_buff - function that resizes buffer
+  * @comm: pointer to buffer to resize
+  * @pre_size: pointer to size of command input buffer
+  *
+  * Return: pointer to new buffer
+ */
+char **resize_buff(char **comm, unsigned int pre_size)
+{
+	unsigned int new_size;
+
+	new_size = pre_size * 2;
+	comm = _realloc(comm, pre_size, new_size);
+	if (comm == NULL)
+	{
+		perror("./hsh");
+		return (NULL);
+	}
+	return (comm);
+}
