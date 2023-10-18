@@ -20,7 +20,7 @@ void exit_shell(char **tokens, char *comm);
 void current_env(void);
 void exec_comm(char **args);
 int _execve(char **tokens);
-int _strcmp(char *s1, char *s2);
+int _strcmp(const char *s1, const char *s2);
 int find_path(char *command);
 int if_path(char *command);
 char *build_path(char *command);
@@ -30,7 +30,7 @@ void *_realloc(void *ptr, unsigned int old_ms, unsigned int new_ms);
 char *_memcpy(char *dest, char *src, size_t n);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
-int _strlen_recursion(char *s);
+int _strlen_recursion(const char *s);
 
 #endif
 

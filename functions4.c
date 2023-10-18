@@ -130,7 +130,7 @@ char *_strcpy(char *dest, char *src)
  * @s: pointer to string
  * Return: length of a string
  */
-int _strlen_recursion(char *s)
+int _strlen_recursion(const char *s)
 {
 	int l = 0;
 

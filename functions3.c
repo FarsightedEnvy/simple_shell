@@ -1,4 +1,6 @@
-#include “shell.h”
+#include "shell.h"
+#include <stdlib.h>
+#include <stddef.h>
 
 /** function to find PATH */
 
@@ -10,6 +12,7 @@
 */
 int find_path(char *command)
 {
+	struct stat info;
 	int path_exist;
 
 	if (command == NULL)

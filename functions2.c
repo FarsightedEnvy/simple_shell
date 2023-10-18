@@ -1,4 +1,9 @@
-#include “shell.h”
+#include "shell.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <stddef.h>
+#include <sys/types.h>
+
 /** function to exit the shell */
 
 /**
@@ -39,63 +44,14 @@ void current_env(void)
 	}
 }
 
-/** function to execute command input */
-
-/**
-  * exec_comm - function that executes a command
-  * @args : pointer to tokens array
-  *
-  * Return : Nothing
-*/
-
-void exec_comm(char **args)
-{
-	if (args == NULL || args[0] == NULL)
-		return (NULL);
-
-	char *command = args[0];
-
-	if (_strcmp(command, "env") == 0)
-	{
-		printenv();
-		return;
-	}
-	int path = if_path(command);
-
-	if (path == 0)
-	{
-		int path_exist = find_path(command);
-
-		if (path_exist == 0)
-			_execve(args);
-		else
-			perror("./hsh");
-	}
-	else
-	{
-		char *command_path = build_path(command);
-
-		if (command_path != NULL)
-		{
-			args[0] = command_path;
-			_execve(args);
-			free(command_path);
-		}
-		else
-		{
-			perror("./hsh");
-		}
-	}
-}
-
 /** function to execute user command */
 
 /**
-*_execve - function that executes a command
-*@tokens: pointer to a null terminated array of strings
-*
-*Return: command output that mimics Linux Bash
-*/
+ *_execve - function that executes a command
+ *@tokens: pointer to a null terminated array of strings
+ *
+ *Return: command output that mimics Linux Bash
+ */
 int _execve(char **tokens)
 {
 	pid_t child_pid;
@@ -112,7 +68,7 @@ int _execve(char **tokens)
 		perror("./hsh");
 		return (-1);
 	}
-	else if (child_pid == 0
+	else if (child_pid == 0)
 	{
 	if (execve(tokens[0], tokens, environ) == -1)
 	{
