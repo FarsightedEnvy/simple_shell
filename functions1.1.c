@@ -15,45 +15,44 @@
  */
 char **_strtok(char *comm, char *delim)
 {
-	char **tokens = NULL, *tok = strtok(comm, delim);
-	size_t buff_size = 0, len = 0, new_size = 0;
-	char **new_tokens = _realloc(tokens, buff_size, new_size);
+	int len = 0, buff_size = 64, pre_size;
+	char *tok, **tokens;
 
-	if (comm == NULL || delim == NULL)
+	if (comm == NULL)
 	{
 		perror("./hsh");
 		return (NULL);
 	}
+	if (*comm == '\n')
+		return (NULL);
+	tokens = malloc(sizeof(char *) * buff_size);
+
+	if (tokens == NULL)
+	{
+		perror("./hsh");
+		return (NULL);
+	}
+	tok = strtok(comm, delim);
+
 	while (tok)
 	{
+		tokens[len] = tok;
+
 		if (len >= buff_size)
 		{
-			size_t new_size = (buff_size == 0) ? 1 : buff_size * 2;
-
-			if (new_tokens == NULL)
+			pre_size = sizeof(char *) * buff_size;
+			tokens = resize_buff(tokens, pre_size);
+			
+			if (tokens == NULL)
 			{
-				perror("Memory allocation error");
-				free(tokens);
+				perror("/hsh");
 				return (NULL);
 			}
-			tokens = new_tokens;
-			buff_size = new_size;
-		}
-		tokens[len] = strdup(tok);
-		
-		if (tokens[len] == NULL)
-		{
-			perror("Memory allocation error");
-			break;
+			buff_size += buff_size;
 		}
 		tok = strtok(NULL, delim);
 		len++;
 	}
-	tokens = _realloc(tokens, buff_size, (len + 1) * sizeof(char *));
-	
-	if (tokens)
-		tokens[len] = NULL;
-	else
-		perror("Memory allocation error");
+	tokens[len] = NULL;
 	return (tokens);
 }
