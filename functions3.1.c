@@ -1,17 +1,20 @@
 #include "shell.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <stddef.h>
+#include <sys/types.h>
 
 /** function that creates path to a regular command */
 
 /**
-  * build_path – function that builds a path to regular command
+  * build_path - function that builds a path to regular command
   * @command: pointer to command input from user
   *
   * Return: 1 on success, -1 on failure
 */
 char *build_path(char *command)
 {
-	char *p_env, *p_copy, *command_path;
-	char **direct;
+	char *p_env, *p_copy, *comm_path, **dir;
 	struct stat info;
 	
 	path_env = _getenv("PATH");
@@ -22,34 +25,34 @@ char *build_path(char *command)
 	
 	if (p_copy == NULL)
 		return (NULL);
-	direct = _strtok(p_copy, ":");
+	dir = _strtok(p_copy, ":");
 	
-	if (direct == NULL)
+	if (dir == NULL)
 	{
 		free(p_copy);
 		return (NULL);
 	}
-	for (int i = 0; direct[i]; i++)
+	for (int i = 0; dir[i]; i++)
 	{
-		command_path = malloc(_strlen_recursion(direct[i]) + _strlen_recursion(command) + 2);
+		comm_path = malloc(_strlen_rec(dir[i]) + _strlen_rec(command) + 2);
 		
-		if (command_path == NULL)
+		if (comm_path == NULL)
 			break;
-		_strcpy(command_path, direct[i]);
-		_strcat(command_path, "/");
-		_strcat(command_path, command);
-		path_exist = stat(command_path, &info);
+		_strcpy(comm_path, dir[i]);
+		_strcat(comm_path, "/");
+		_strcat(comm_path, command);
+		path_exist = stat(comm_path, &info);
 		
 		if (path_exist == 0)
 		{
 			free(p_copy);
-			free(direct);
-			return (command_path);
+			free(dir);
+			return (comm_path);
 		}
-		free(command_path);
+		free(comm_path);
 	}
 	free(p_copy);
-	free(direct);
+	free(dir);
 	return (NULL);
 }
 

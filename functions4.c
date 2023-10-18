@@ -126,18 +126,18 @@ char *_strcpy(char *dest, char *src)
 /** function that prints string length */
 
 /**
- * _strlen_recursion - function that prints length of a string
+ * _strlen_rec - function that prints length of a string
  * @s: pointer to string
  * Return: length of a string
  */
-int _strlen_recursion(const char *s)
+int _strlen_rec(const char *s)
 {
 	int l = 0;
 
 	if (*s)
 	{
 		l++;
-		l += _strlen_recursion(s + 1);
+		l += _strlen_rec(s + 1);
 	}
 	return (l);
 }

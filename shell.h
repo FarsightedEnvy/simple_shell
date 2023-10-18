@@ -30,7 +30,7 @@ void *_realloc(void *ptr, unsigned int old_ms, unsigned int new_ms);
 char *_memcpy(char *dest, char *src, size_t n);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
-int _strlen_recursion(const char *s);
+int _strlen_rec(const char *s);
 
 #endif
 

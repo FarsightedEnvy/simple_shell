@@ -24,12 +24,11 @@ int kl_print(char c)
   */
 void prompt(void)
 {
-	constant char *prompt = "$ ";
+	const char *prompt = "$ ";
 
-	while (*prompt)
+	while (prompt)
 	{
 		write(STDOUT_FILENO, prompt, 1);
-		prompt++;
 	}
 }
 
@@ -68,7 +67,7 @@ char *_strdup(const char *str)
 	if (str == NULL)
 		return (NULL);
 
-	len = _strlen_recursion(str);
+	len = _strlen_rec(str);
 	if (len  == 0)
 		return (NULL);
 	dupl = malloc(sizeof(char) * len + 1);

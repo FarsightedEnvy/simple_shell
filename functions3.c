@@ -59,7 +59,7 @@ char *_getenv(const char *env_var)
 	int l = 0, len;
 	char *curr_env_copy, *tok;
 
-	len = _strlen_recursion(env_var);
+	len = _strlen_rec(env_var);
 
 	while (environ[l])
 	{
