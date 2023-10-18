@@ -15,7 +15,7 @@ extern char **environ;
 int kl_print(char c);
 void prompt(void);
 ssize_t read_command(char **comm, size_t *k);
-char **_strtok(const char *comm, const char *delim);
+char **_strtok(char *comm, char *delim);
 void exit_shell(char **tokens, char *comm);
 void current_env(void);
 void exec_comm(char **args);

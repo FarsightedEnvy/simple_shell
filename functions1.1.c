@@ -1,4 +1,8 @@
 #include "shell.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <stddef.h>
+#include <sys/types.h>
 
 /** function to tokenize input string */
 
@@ -9,13 +13,12 @@
  *
  * Return: tokenized string
  */
-
-char **_strtok(const char *comm, const char *delim)
+char **_strtok(char *comm, char *delim)
 {
-	char **tokens = NULL;
-	size_t buff_size = 0, len = 0, new_size;
-	char *tok = strtok(comm, delim);
-	
+	char **tokens = NULL, *tok = strtok(comm, delim);
+	size_t buff_size = 0, len = 0, new_size = 0;
+	char **new_tokens = _realloc(tokens, buff_size, new_size);
+
 	if (comm == NULL || delim == NULL)
 	{
 		perror("./hsh");
@@ -25,12 +28,8 @@ char **_strtok(const char *comm, const char *delim)
 	{
 		if (len >= buff_size)
 		{
-			if (buff_size == 0)
-				new_size = 1;
-			else
-				new_size = buff_size * 2;
-			char **new_tokens = _realloc(tokens, buff_size, new_size);
-			
+			size_t new_size = (buff_size == 0) ? 1 : buff_size * 2;
+
 			if (new_tokens == NULL)
 			{
 				perror("Memory allocation error");
@@ -50,7 +49,7 @@ char **_strtok(const char *comm, const char *delim)
 		tok = strtok(NULL, delim);
 		len++;
 	}
-	tokens = _realloc(tokens, (len + 1) * sizeof(char *));
+	tokens = _realloc(tokens, buff_size, (len + 1) * sizeof(char *));
 	
 	if (tokens)
 		tokens[len] = NULL;

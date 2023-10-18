@@ -1,4 +1,8 @@
-#include “shell.h”
+#include "shell.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <stddef.h>
+#include <sys/types.h>
 
 /** function to print a char */
 
