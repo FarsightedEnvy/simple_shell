@@ -26,7 +26,7 @@ void prompt(void)
 {
 	char *prompt = "$ ";
 
-	while (prompt)
+	while (*prompt)
 	{
 		write(STDOUT_FILENO, prompt, 1);
 		prompt++;

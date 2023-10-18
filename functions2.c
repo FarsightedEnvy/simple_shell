@@ -79,7 +79,7 @@ int _execve(char **tokens)
 	}
 	else
 	{
-		waitpid(child_pid, &status, 0);
+		wait(&status);
 	}
 	return (0);
 }
@@ -100,6 +100,6 @@ int _strcmp(const char *s1, const char *s2)
 		s1++;
 		s2++;
 	}
-	return (*(unsigned char *)s1 - *(unsigned char *)s2);
+	return (*(const char *)s1 - *(const char *)s2);
 
 }
