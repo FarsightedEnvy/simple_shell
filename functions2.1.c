@@ -7,8 +7,8 @@
   */
 void exec_comm(char **args)
 {
-	char *command = NULL;
-	int path = if_path(command);
+	char *command;
+	int path;
 
 	if (args == NULL || args[0] == NULL)
 	{
@@ -22,6 +22,7 @@ void exec_comm(char **args)
 		current_env();
 		return;
 	}
+	path = if_path(command);
 
 	if (path == 0)
 	{

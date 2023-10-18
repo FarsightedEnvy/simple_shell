@@ -34,6 +34,8 @@ void current_env(void)
 
 	while (environ[l] != NULL)
 	{
+		k = 0;
+
 		while (environ[l][k] != '\0')
 		{
 			kl_print(environ[l][k]);
