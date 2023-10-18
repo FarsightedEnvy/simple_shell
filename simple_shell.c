@@ -26,7 +26,7 @@ int main(void)
 
 			continue;
 		}
-		exit_shell(tokens, buff);
+		exit_shell(tokens, comm);
 		exec_comm(tokens);
 		free(tokens);
 		if (isatty(STDIN_FILENO) == 1)
