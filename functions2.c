@@ -17,8 +17,8 @@ void exit_shell(char **tokens, char *comm)
 {
 	if (_strcmp(tokens[0], "exit") == 0)
 	{
-		free(tokens);
 		free(comm);
+		free(tokens);
 		exit(EXIT_SUCCESS);
 	}
 }
