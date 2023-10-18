@@ -18,25 +18,19 @@ char *build_path(char *command)
 	struct stat info;
 	int i, path_exist;
 	
-	if (p_env == NULL)
-		return (NULL);
 	p_copy = _strdup(p_env);
-	
-	if (p_copy == NULL)
-		return (NULL);
 	dir = _strtok(p_copy, ":");
 	
-	if (dir == NULL)
-	{
-		free(p_copy);
-		return (NULL);
-	}
 	for (i = 0; dir[i]; i++)
 	{
-		comm_path = malloc(_strlen_rec(dir[i]) + _strlen_rec(command) + 2);
+		comm_path = malloc(sizeof(char) * 4096);
 		
 		if (comm_path == NULL)
-			break;
+		{
+			free(p_copy);
+			free(dir);
+			return (NULL);
+		}
 		_strcpy(comm_path, dir[i]);
 		_strcat(comm_path, "/");
 		_strcat(comm_path, command);
