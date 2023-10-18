@@ -7,7 +7,7 @@
   */
 void exec_comm(char **args)
 {
-	char *command;
+	char *command = NULL;
 	int path = if_path(command);
 
 	if (args == NULL || args[0] == NULL)
