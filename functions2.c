@@ -63,6 +63,7 @@ int _execve(char **tokens)
 		return (-1);
 	}
 	child_pid = fork();
+
 	if (child_pid == -1)
 	{
 		perror("./hsh");
@@ -70,16 +71,15 @@ int _execve(char **tokens)
 	}
 	else if (child_pid == 0)
 	{
-	if (execve(tokens[0], tokens, environ) == -1)
-	{
-		perror("./hsh");
-		return (-1);
-	}
+		if (execve(tokens[0], tokens, environ) == -1)
+		{
+			perror("./hsh");
+			return (-1);
+		}
 	}
 	else
 	{
-	waitpid(child_pid, &status, 0);
-	return (0);
+		waitpid(child_pid, &status, 0);
 	}
 	return (0);
 }

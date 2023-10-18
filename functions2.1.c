@@ -7,20 +7,21 @@
   */
 void exec_comm(char **args)
 {
+	char *command;
+	int path = if_path(command);
+
 	if (args == NULL || args[0] == NULL)
 	{
 		perror("./hsh");
 		return;
 	}
-	char *command;
 
 	command = args[0];
 	if (_strcmp(command, "env") == 0)
 	{
-		printenv();
+		current_env();
 		return;
 	}
-	int path = if_path(command);
 
 	if (path == 0)
 	{

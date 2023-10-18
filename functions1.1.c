@@ -12,15 +12,15 @@
 
 char **_strtok(const char *comm, const char *delim)
 {
+	char **tokens = NULL;
+	size_t buff_size = 0, len = 0, new_size;
+	char *tok = strtok(comm, delim);
+	
 	if (comm == NULL || delim == NULL)
 	{
 		perror("./hsh");
 		return (NULL);
 	}
-	char **tokens = NULL;
-	size_t buff_size = 0, len = 0, new_size;
-	char *tok = strtok(comm, delim);
-	
 	while (tok)
 	{
 		if (len >= buff_size)
@@ -29,7 +29,7 @@ char **_strtok(const char *comm, const char *delim)
 				new_size = 1;
 			else
 				new_size = buff_size * 2;
-			char **new_tokens = _realloc(tokens, new_size * sizeof(char *));
+			char **new_tokens = _realloc(tokens, buff_size, new_size);
 			
 			if (new_tokens == NULL)
 			{
