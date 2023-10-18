@@ -1,4 +1,6 @@
-#include “shell.h”
+#include "shell.h"
+#include <stdlib.h>
+#include <stddef.h>
 
 /** function to reallocate a memory block */
 
