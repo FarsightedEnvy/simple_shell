@@ -24,9 +24,13 @@ int kl_print(char c)
   */
 void prompt(void)
 {
-	const char *prompt = "$ ";
-	
-	write(STDOUT_FILENO, prompt, 1);
+	char *prompt = "$ ";
+
+	while (prompt)
+	{
+		write(STDOUT_FILENO, prompt, 1);
+		prompt++;
+	}
 }
 
 /** function to read input from user */
