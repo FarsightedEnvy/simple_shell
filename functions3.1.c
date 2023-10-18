@@ -17,14 +17,14 @@ char *build_path(char *command)
 	char *p_env = _getenv("PATH"), *p_copy, *comm_path, **dir;
 	struct stat info;
 	int i, path_exist;
-	
+
 	p_copy = _strdup(p_env);
 	dir = _strtok(p_copy, ":");
-	
+
 	for (i = 0; dir[i]; i++)
 	{
 		comm_path = malloc(sizeof(char) * 4096);
-		
+
 		if (comm_path == NULL)
 		{
 			free(p_copy);
@@ -35,7 +35,7 @@ char *build_path(char *command)
 		_strcat(comm_path, "/");
 		_strcat(comm_path, command);
 		path_exist = stat(comm_path, &info);
-		
+
 		if (path_exist == 0)
 		{
 			free(p_copy);

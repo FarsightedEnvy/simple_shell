@@ -42,7 +42,7 @@ char **_strtok(char *comm, char *delim)
 		{
 			pre_size = sizeof(char *) * buff_size;
 			tokens = resize_buff(tokens, pre_size);
-			
+
 			if (tokens == NULL)
 			{
 				perror("/hsh");
