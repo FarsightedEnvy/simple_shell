@@ -81,6 +81,7 @@ int _execve(char **tokens)
 	waitpid(child_pid, &status, 0);
 	return (0);
 	}
+	return (0);
 }
 
 /** function that compares 2 strings */
@@ -92,7 +93,7 @@ int _execve(char **tokens)
  *
  * Return: the difference between s1 and s2 ASCII values
  */
-int _strcmp(char *s1, char *s2)
+int _strcmp(const char *s1, const char *s2)
 {
 	while (*s1 && (*s1 == *s2))
 	{
