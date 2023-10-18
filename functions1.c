@@ -41,8 +41,6 @@ void prompt(void)
   * @k: size of buffer
   * Return: number of bytes read
 */
-
-
 ssize_t read_command(char **comm, size_t *k)
 {
 	ssize_t read_result;
